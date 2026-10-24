@@ -13,8 +13,8 @@ jobs:
       DATABASE_URL: postgresql://iot:iot@localhost:5432/iot
       PGSSLMODE: disable   # el Postgres del CI no tiene SSL
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with: {python-version: "3.12"}
       - run: psql "$DATABASE_URL" -f schema.sql
       - run: pip install -r dashboard/requirements.txt -r captura/requirements.txt pytest httpx
