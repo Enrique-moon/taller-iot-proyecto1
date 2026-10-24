@@ -49,3 +49,4 @@ selector.onchange = dibujarGrafico;
 refrescar();
 setInterval(refrescar, 2000);
 setInterval(pintar, 1000);
+pedir("/api/version").then(d => document.getElementById("ver").textContent = "v" + d.version);  // pie: versión

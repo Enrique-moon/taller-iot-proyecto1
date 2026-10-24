@@ -1,5 +1,6 @@
 """API del dashboard: tres rutas. La página vive en public/ (index.html y app.js)."""
 import os
+from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import db
@@ -17,6 +18,11 @@ def ultimas():
 @app.get("/api/serie")
 def serie(estacion: int = 1):
     return db.serie(estacion)
+
+# La versión (SemVer) vive en un solo archivo, dashboard/VERSION. Al publicar una versión nueva solo se edita ese archivo.
+@app.get("/api/version")
+def version():
+    return {"version": (Path(__file__).parent / "VERSION").read_text().strip()}
 
 # Solo en local: en Vercel public/ lo sirve la plataforma (el doc pide no montarla) y VERCEL=1 está definido.
 # Va al final para no tapar /api. html=True sirve index.html en "/".
