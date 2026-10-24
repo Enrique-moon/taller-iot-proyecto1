@@ -56,6 +56,19 @@ git push -u origin main
 
 **7. Logs.** En Vercel: proyecto > **Logs** (o Deployments > el despliegue > Logs). Aquí salen los errores de `/api/...`.
 
+## Versiones
+
+Usamos versionado semántico: `MAJOR.MINOR.PATCH` (por ejemplo `0.1.0`).
+
+- **PATCH** sube con un arreglo que no cambia lo que hace el programa (`0.1.0` -> `0.1.1`).
+- **MINOR** sube con una función nueva que no rompe nada (`0.1.0` -> `0.2.0`).
+- **MAJOR** sube con un cambio que rompe a quien ya lo usaba (`0.x` -> `1.0.0`).
+- Mientras el MAJOR sea `0`, el proyecto aún está en desarrollo y la API puede cambiar. `0.0.1` sería el primer paso, apenas un esqueleto.
+
+La versión vive en `dashboard/VERSION` y se ve en `/api/version` y en el pie de la página. Cada versión publicada lleva un **tag** de git (`v0.2.0`) y un **release** en GitHub con sus notas; los cambios se anotan en `CHANGELOG.md`.
+
+Los mensajes de commit siguen Conventional Commits, que dicen qué número toca subir: `fix:` (PATCH), `feat:` (MINOR), `docs:` (sin versión nueva). Si el cambio rompe compatibilidad se escribe `feat!:` (MAJOR).
+
 ## Cómo está armado para Vercel (según la documentación oficial)
 
 - Vercel busca la instancia `app` en `app.py`, `index.py`, `server.py` o `main.py` (también en `src/` o `app/`): `dashboard/main.py` ya cumple, no se renombró.
