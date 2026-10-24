@@ -1,0 +1,18 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Estaciones</title>
+<style>
+  body { font-family: sans-serif; margin: 20px }
+  #tarjetas { display: flex; gap: 12px }
+  .tarjeta { flex: 1; padding: 12px; border-radius: 8px; background: #e3f2fd }
+  #vivo { font-size: 14px; padding: 2px 8px; border-radius: 4px; color: #fff }
+  .si { background: #2e7d32 } .no { background: #757575 }
+  canvas { border: 1px solid #ccc }
+</style>
+<h2>Estaciones de riego <span id="vivo"></span></h2>
+<div id="tarjetas"></div>
+<p>Humedad de la estación
+  <select id="estacion"><option>1</option><option>2</option><option>3</option><option>4</option></select>
+</p>
+<canvas id="grafico" width="1000" height="300"></canvas>
+<script src="app.js"></script>
