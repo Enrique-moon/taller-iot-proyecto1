@@ -1,4 +1,4 @@
-// Pide los datos a la API cada 2 s y los dibuja. Sin librerías: se lee completo.
+// Pide los datos a la API cada 5 s y los dibuja. Sin librerías: se lee completo.
 const tarjetas = document.getElementById("tarjetas");
 const selector = document.getElementById("estacion");
 const ctx = document.getElementById("grafico").getContext("2d");
@@ -44,9 +44,9 @@ async function dibujarGrafico() {
   ctx.stroke();
 }
 
-function refrescar() { pedirUltimas(); dibujarGrafico(); }
+function refrescar() { if (document.hidden) return; pedirUltimas(); dibujarGrafico(); }  // pestaña oculta: no consultar
 selector.onchange = dibujarGrafico;
 refrescar();
-setInterval(refrescar, 2000);
+setInterval(refrescar, 5000);  // el ESP32 publica cada 5 s: consultar más seguido no trae datos nuevos
 setInterval(pintar, 1000);
 pedir("/api/version").then(d => document.getElementById("ver").textContent = "v" + d.version);  // pie: versión
